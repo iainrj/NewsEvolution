@@ -1,20 +1,6 @@
 'use strict';
 
-const http = require('http'),
-      _    = require('lodash');
-
-// Object -> Array
-function createSiteRequestUrl(timestamps) {
-  let responseTimestamps = JSON.parse(timestamps);
-
-  let webUrls = [];
-  _.map(responseTimestamps, (timestamp) => {
-    if (timestamp[0] !== 'timestamp') {
-      webUrls.push(`http://web.archive.org/web/${timestamp}/http://www.bbc.com/news`);
-    }
-  });
-  return webUrls;
-}
+const http = require('http');
 
 let timestamps = "",
   url  = 'http://web.archive.org/cdx/search/cdx?url=bbc.com/news&fl=timestamp&filter=statuscode:200&from=20160612070000&output=json';
